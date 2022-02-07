@@ -1,0 +1,624 @@
+//基本檔案
+@import 'reset';
+@import 'layout';
+@import 'color';
+@import 'fonts';
+@import 'animation';
+@import 'default';
+@import 'screen';
+
+//雲端字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+//js
+.scroll-off{
+    overflow-y: hidden !important;
+}
+.fadein{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.fadeout{
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+.fill-color{
+    background-color: $primary;
+    box-shadow: 0 4px 8px $primary*0.75;
+}
+
+
+//內容樣式
+*{
+    @include font-name('Overpass', 'Noto Sans TC');
+}
+.spec-px{
+    @include p-x(10%, 10%);
+}
+
+.spec-mx{
+    @include m-x(10%, 10%);
+}
+
+body{
+    background-color: $primary; 
+    overflow-x: hidden !important;
+}
+body::before{
+    content: ' ';  
+    position: fixed;        
+    z-index: -1;        
+    top: 0;        
+    right: 0;        
+    bottom: 0;        
+    left: 0;        
+    background: url('../images/background-l.png') center 0 no-repeat;        
+    background-size: cover;        
+    }
+
+a{
+    @include linear(0.5s);
+}
+
+$book-img-radius: 16px;
+
+$border-circle: 1000000px;
+
+header{
+    @include fixed(0, 0, none, 0, auto);
+    z-index: 9;
+    ul{
+        @include fixed(0, 0, none, 0, auto);
+        @include p-y(24px, 24px);
+        @include flex-row;
+        @include linear(0.25s);
+        align-items: center;
+        background-color: transparent;
+        li{
+            a{
+                color: $white;
+            }
+            a:hover{
+                color: $secondary;
+            }
+        }
+        .more-link{
+            @include p-x(16px, 16px);
+            @include p-y(8px, 6px);
+            background-color: $black;
+            border-radius: $border-circle;
+        }
+        li:first-child{
+            @include m-l(10%);
+            @include m-r(auto);
+        }
+        li:nth-child(2){
+            @include m-x(auto, 16px);
+        }
+        li:nth-child(3){
+            @include m-x(16px, 16px);
+        }
+        li:last-child{
+            @include m-x(16px, 10%);
+        }
+    }
+}
+
+.main-vision{
+    height: 100vh;
+    position: relative;
+    .main-vision-l{
+        display: block;
+    }
+    .main-vision-m, .main-vision-s{
+        display: none;
+    }
+    img{
+        @include absolute(0, 0, 0, 0, auto);
+        max-width: 100%;
+    }
+}
+
+.categories{
+    @include flex-row;
+    height: 100vh;
+    min-height: 800px;
+    .categories-content{
+        @include m-x(auto, auto);
+        @include m-y(auto, auto);
+        @include flex-row;
+        align-items: center;
+        .categories-content-vision{
+            @include m-x(0, 2.5%);
+        }
+        .categories-content-book{
+            @include m-x(2.5%, 0);
+            .categories-content-book-information{
+                @include flex-row;
+                align-items: center;
+                .categories-content-book-information-img{
+                    @include m-r(32px);
+                    height: 262px;
+                    min-height: 262px;
+                    width: 169px;
+                    min-width: 169px;
+                    border-radius: $book-img-radius;
+                    background-color: $white;
+                }
+                .categories-content-book-information-introduction{
+                    width: 100%;
+                    @include m-l(32px);
+                    h3{
+                        width: 100%;
+                        span{
+                            @include p-y(8px, 4px);
+                            @include p-x(16px, 16px);
+                            @include font-b(24px);
+                            line-height: 24px;
+                            background-color:$black;
+                            border-radius: $border-circle;
+                        }
+                    }
+                    h5{
+                        @include font-b(24px);
+                        @include text-limted-rows(2);
+                    }
+                    article{
+                        display: none;
+                    }
+                    p{
+                        @include font-n(16px);
+                    }
+                    div{
+                        @include flex-row;
+                        a{
+                            @include p-y(16px, 16px);
+                            @include font-n(16px);
+                            width: 47.5%;
+                            border: 1px solid $white;
+                            text-align: center;
+                            color: $white;
+                            display: block;
+                            border-radius: $border-circle;
+                        }
+                        a:first-child{
+                            @include m-r(2.5%);
+                        }
+                        a:last-child{
+                            @include m-l(2.5%);
+                        }
+                        a:hover{
+                            background-color: $black
+                        }
+                    }
+                    h3, h5, p, article, p{
+                        @include m-b(16px);
+                    }
+                    h3 span, h5, p del{
+                        color: $white;
+                    }
+                    p span{
+                        color: $secondary;
+                    }
+                }
+            }
+            .categories-content-book-line{
+                height: 1px;
+                width: 100%;
+                background-color: $white;
+            }
+            .categories-content-book-information, .categories-content-book-line{
+                @include m-b(64px);
+            }
+        }
+        .categories-content-vision, .categories-content-book{
+            width: 47.5%;
+        }
+    }
+}
+
+.categories:nth-child(even){
+    .categories-content{
+        @include flex-row-r;
+        .categories-content-vision{
+            @include m-x(2.5%, 0);
+        }
+        .categories-content-book{
+            @include m-x(0, 2.5%);
+        }
+    }
+}
+
+.footer{
+    @include p-t(64px);
+    position: relative;
+    background-color: $black;
+    .footer-other{
+        @include m-b(64px);
+        p{
+            @include m-b(16px);
+            @include font-b(24px);
+            color: $white;
+        }
+        ul{
+            list-style: decimal;
+            li{
+                @include m-l(16px);
+                @include m-b(8px);
+                @include font-n(16px);
+                span{
+                    border-bottom: 1px solid $secondary;
+                }
+            }
+        }
+        p, ul li{
+            color: $white;
+        }
+    }
+    .footer-copyright{
+        @include p-y(16px, 16px);
+        @include flex-row;
+        border-top: 1px solid $white;
+        p{
+            @include font-n(16px);
+        }
+        p, p a{
+            color: $white;
+            a:hover{
+                color: $secondary;
+            }
+        }
+        p:first-child{
+            @include m-r(auto);
+        }
+        p:nth-child(2){
+            @include m-x(auto, 16px);
+        }
+        p:last-child{
+            @include m-x(16px, 0);
+        }
+    }
+    &:before{
+        @include absolute(-156px, 0, none, 0, auto);
+        @include bg-image-default('footer-bg-top.svg', cover, no-repeat, center center);
+        content: '';
+        height: 160px;
+        width: 100%;  
+        display: block;  
+    }
+}
+
+.content-link{
+    @include fixed(0, 0, 0, none, auto);
+    @include flex-col;
+    height: 432px;
+    z-index: 99;
+    a{
+        @include m-y(24px, 24px);
+        @include font-b(24px);
+        @include bg-image-default('content-link-default-bg.svg', cover, no-repeat, center center);
+        height: 48px;
+        width: 144px;
+        line-height: 48px;
+        color: $primary;
+        display: block;
+        text-align: center;
+    }
+    a:hover{
+        @include bg-image-default('content-link-active-bg.svg', cover, no-repeat, center center);
+    }
+}
+
+.popup{
+    @include p-y(24px, 24px);
+    @include fixed(0, 0, 0, 0, auto);
+    @include flex-row;
+    @include bg-color-a($black, 0.5);
+    @include linear(0.5s);
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    overflow-y: auto;
+    .popup-content{
+        @include m-x(auto, auto);
+        @include m-y(auto, auto);
+        @include p-x(32px, 32px);
+        @include p-y(32px, 32px);
+        @include bg-image-default('popup-bg.jpg', cover, no-repeat, center center);
+        height: auto;
+        width: 90%;
+        max-width: 440px;
+        min-width: 360px;
+        background-color: $primary;
+        overflow-y: auto;
+        border-radius: $book-img-radius;
+        box-shadow: 0 0 16px $black*1.5;
+        h5{
+            @include p-b(8px);
+            @include font-b(24px);
+            border-bottom: 1px solid $white;
+        }
+        article, p{
+            @include font-n(16px);
+        }
+        p{
+            @include flex-row;
+            del{
+                @include m-r(8px);
+            }
+            span{
+                @include m-l(8px);
+            }
+        }
+        div{
+            @include flex-row;
+            a{
+                @include p-y(16px, 16px);
+                width: 100%;
+                border: 1px solid $white;
+                border-radius: $border-circle;
+                text-align: center;
+                display: inline-block;
+            }
+            a:first-child{
+                @include m-r(8px);
+            }
+            a:nth-child(2){
+                @include m-l(8px);
+            }
+            a:hover{
+                background-color: $black;
+            }
+        }
+        h5, article, p, div{
+            @include m-y(16px, 16px);
+        }
+        h5, article, p > del, div > a{
+            color: $white;
+        }
+        p > span{
+            color: $secondary;
+        }
+    }
+}
+
+.more-link-mobile{
+    @include p-x(12px, 12px);
+    @include p-y(8px, 8px);
+    @include flex-row;
+    @include fixed(0, -1px, 0, none, auto);
+    height: 136px;
+    align-items: center;
+    z-index: 9;
+    border: 1px solid $white;
+    background-color: $black;
+    display: none;
+    border-top-left-radius: $book-img-radius;
+    border-bottom-left-radius: $book-img-radius;
+    box-shadow: 0 8px 16px $black;
+    span{
+        @include m-l(4px);
+        @include font-n(16px);
+    }
+    i, span{
+        color: $white;
+        display: inline-block;
+    }
+}
+
+@include desktop-m{
+    .categories{
+        @include flex-row;
+        .categories-content{
+            .categories-content-vision{
+                @include m-r(2.5%);
+            }
+            .categories-content-book{
+                @include m-l(2.5%);
+                .categories-content-book-information{
+                    .categories-content-book-information-img{
+                        @include m-r(16px);
+                    }
+                    .categories-content-book-information-introduction{
+                        @include m-l(16px);
+                        div{
+                            a{
+                                @include p-y(8px, 8px);
+                            }
+                            a:first-child{
+                                @include m-r(2.5%);
+                            }
+                            a:last-child{
+                                @include m-l(2.5%);
+                            }
+                            a:hover{
+                                background-color: $black
+                            }
+                        }
+                        h3, h5, p, article, p{
+                            @include m-b(16px);
+                        }
+                        h3 span, h5, p del{
+                            color: $white;
+                        }
+                        p span{
+                            color: $secondary;
+                        }
+                    }
+                }
+                .categories-content-book-line{
+                    height: 1px;
+                    width: 100%;
+                    background-color: $white;
+                }
+                .categories-content-book-information, .categories-content-book-line{
+                    @include m-b(32px);
+                }
+            }
+            .categories-content-vision, .categories-content-book{
+                width: 47.5%;
+            }
+        }
+    }
+}
+
+@include pad-l{
+    body::before{     
+        background: url('../images/background-m.png') center 0 no-repeat;         
+        }
+    .main-vision{
+        height: 100vh;
+        position: relative;
+        .main-vision-m{
+            display: block;
+        }
+        .main-vision-l, .main-vision-s{
+            display: none;
+        }
+    }
+    .categories{
+        @include p-b(108px);
+        @include flex-row;
+        height: auto;
+        min-height: unset;
+        .categories-content{
+            @include m-x(0, 0);
+            @include m-y(0, 0);
+            flex-wrap: wrap;
+            .categories-content-vision{
+                @include m-r(0);
+            }
+            .categories-content-book{
+                @include m-l(0);
+                .categories-content-book-information{
+                    .categories-content-book-information-img{
+                        @include m-r(32px);
+                    }
+                }
+            }
+                .categories-content-book-information, .categories-content-book-line{
+                    @include m-b(32px);
+                }
+            .categories-content-vision, .categories-content-book{
+                width: 100%;
+            }
+        }
+    }
+    .footer{
+        .footer-other{
+            p{
+                @include m-b(16px);
+                text-align: center;
+            }
+        }
+        .footer-copyright{
+            flex-wrap: wrap;
+            p{
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@include phone-l{
+    body::before{     
+        background: url('../images/background-s.png') center 0 no-repeat;         
+        }
+    .spec-px{
+        @include p-x(5%, 5%);
+    }
+    .spec-mx{
+        @include m-x(5%, 5%);
+    }
+    header{
+        ul{
+            @include p-y(16px, 16px);
+            li:first-child{
+                @include m-l(5%);
+                @include m-r(auto);
+                width: 160px;
+            }
+            li:nth-child(2){
+                @include m-x(auto, 0px);
+            }
+            li:last-child{
+                display: none;
+            }
+
+        }
+    }
+    .main-vision{
+        height: 100vh;
+        position: relative;
+        .main-vision-s{
+            display: block;
+        }
+        .main-vision-l, .main-vision-m{
+            display: none;
+        }
+    }
+    .categories{
+        @include p-y(80px, 80px);
+        @include flex-row;
+        height: auto;
+        min-height: unset;
+        .categories-content{
+            @include m-x(0, 0);
+            @include m-y(0, 0);
+            flex-wrap: wrap;
+            .categories-content-vision{
+                display: none;
+            }
+            .categories-content-book{
+                @include m-l(0);
+                .categories-content-book-information{
+                    flex-wrap: wrap;
+                    .categories-content-book-information-img{
+                        @include m-x(auto, auto);
+                        @include m-b(32px);
+                        text-align: center;
+                    }
+                    .categories-content-book-information-introduction{
+                        @include m-x(0, 0);
+                        h3{
+                            @include m-b(24px);
+                            span{
+                                @include font-b(16px);
+                            }
+                        }
+                        h5{
+                            @include text-limted-rows(1);
+                        }
+                        h5, p, article, p{
+                            @include m-b(16px);
+                        }
+                    }
+                }
+                .categories-content-book-information, .categories-content-book-line{
+                    @include m-b(32px);
+                }
+                .categories-content-book-information:last-child{
+                    @include m-b(0);
+                }
+            }
+        }
+    }
+    .footer{
+        .footer-other{
+            @include m-b(24px);
+        }
+        &:before{
+            @include absolute(-76px, 0, none, 0, auto);
+            @include bg-image-default('footer-bg-top.svg', cover, no-repeat, center center);
+            content: '';
+            height: 80px;
+            width: 100%;  
+            display: block;  
+        }
+    }
+    .more-link-mobile{
+        @include flex-row;
+    }
+}
